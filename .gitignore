@@ -1,2 +1,6 @@
 **/*book*
 couse_content/book.pdf
+
+*.swp
+*.swo
+**/*.DS_Store*
