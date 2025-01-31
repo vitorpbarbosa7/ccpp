@@ -1,6 +1,3 @@
-cpp -P double.py
-
-
 #define fosho def
 #define kthx return 
 #define wutz print
