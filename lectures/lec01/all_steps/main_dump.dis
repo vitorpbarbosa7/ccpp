@@ -1,0 +1,38 @@
+
+main:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000100003f20 <_main>:
+100003f20: d10103ff    	sub	sp, sp, #0x40
+100003f24: a9037bfd    	stp	x29, x30, [sp, #0x30]
+100003f28: 9100c3fd    	add	x29, sp, #0x30
+100003f2c: 52800008    	mov	w8, #0x0                ; =0
+100003f30: b90017e8    	str	w8, [sp, #0x14]
+100003f34: b81fc3bf    	stur	wzr, [x29, #-0x4]
+100003f38: 1e629000    	fmov	d0, #5.00000000
+100003f3c: fc1f03a0    	stur	d0, [x29, #-0x10]
+100003f40: fc5f03a0    	ldur	d0, [x29, #-0x10]
+100003f44: fc5f03a1    	ldur	d1, [x29, #-0x10]
+100003f48: 1e610801    	fmul	d1, d0, d1
+100003f4c: 90000008    	adrp	x8, 0x100003000 <_printf+0x100003000>
+100003f50: fd47c900    	ldr	d0, [x8, #0xf90]
+100003f54: 1e610800    	fmul	d0, d0, d1
+100003f58: fd000fe0    	str	d0, [sp, #0x18]
+100003f5c: fd400fe0    	ldr	d0, [sp, #0x18]
+100003f60: 910003e8    	mov	x8, sp
+100003f64: fd000100    	str	d0, [x8]
+100003f68: 90000000    	adrp	x0, 0x100003000 <_printf+0x100003000>
+100003f6c: 913e6000    	add	x0, x0, #0xf98
+100003f70: 94000005    	bl	0x100003f84 <_printf+0x100003f84>
+100003f74: b94017e0    	ldr	w0, [sp, #0x14]
+100003f78: a9437bfd    	ldp	x29, x30, [sp, #0x30]
+100003f7c: 910103ff    	add	sp, sp, #0x40
+100003f80: d65f03c0    	ret
+
+Disassembly of section __TEXT,__stubs:
+
+0000000100003f84 <__stubs>:
+100003f84: b0000010    	adrp	x16, 0x100004000 <_printf+0x100004000>
+100003f88: f9400210    	ldr	x16, [x16]
+100003f8c: d61f0200    	br	x16
