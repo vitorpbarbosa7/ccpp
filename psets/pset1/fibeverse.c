@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 
   // arg 1 is the first argument passed to the executable
 	int i = 1;
-    
+   
   #ifdef FIBONACCI
 	if (i < argc) {
     printf("needs to print fib\n");
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 	}
   #endif
 
-  #ifndef FIBONNACI
+  #ifdef REVERSE
 	if (i < argc) {
     // argv[i] will be the second argument , because i=2 here
     // the length of the string will be here as integer
