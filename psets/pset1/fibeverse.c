@@ -5,20 +5,23 @@
 #include "reverse.h"
 
 int main(int argc, char *argv[]) {
-  printf("argument count: %d", argc);
+  printf("argument count: %d\n", argc);
 
   // arg 0 is the executable itself
 
   // arg 1 is the first argument passed to the executable
 	int i = 1;
-
+    
+  #ifdef FIBONACCI
 	if (i < argc) {
     printf("needs to print fib\n");
     // ascii to integer
 		print_fib(atoi(argv[i]));
 		i++;
 	}
+  #endif
 
+  #ifndef FIBONNACI
 	if (i < argc) {
     // argv[i] will be the second argument , because i=2 here
     // the length of the string will be here as integer
@@ -26,6 +29,7 @@ int main(int argc, char *argv[]) {
 		reverse(argv[i], str_length);
 		i++;
 	}
+  #endif
 
 	return 0;
 }
