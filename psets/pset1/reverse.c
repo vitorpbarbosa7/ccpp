@@ -18,6 +18,7 @@ void backwards(char *str, int len){
         reversed[pos++] = ' ';
       }
       // now we have a new limit of the beginning of that word
+      // caret here is like the cursor position
       caret = i;
     }
   }
