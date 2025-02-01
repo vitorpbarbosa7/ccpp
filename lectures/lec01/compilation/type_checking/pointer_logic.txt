@@ -1,0 +1,4 @@
+Value of x: 42
+Address of x: 0x16d134fd8
+Value stored in ptr (address of x): 0x16d134fd8
+Address of ptr itself: 0x16d134fd0

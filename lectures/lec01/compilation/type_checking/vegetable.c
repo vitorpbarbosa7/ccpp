@@ -34,6 +34,14 @@ int main() {
     printf("\nDereferenced values:\n");
     printf("*day1: %c\n", *day1);  // First character of day1
     printf("*veg1: %c\n", *veg1);  // First character of vegetable string
-    return 0;
+
+  // Iterate over day1
+  printf("Characters in day1:\n");
+  for (const char *ptr = day1; *ptr != '\0'; ptr++) {
+    printf("%c\n", *ptr);
+    printf("%p\n", (void*)ptr);
+    printf("%p\n",&ptr);
+  }
+
 }
 
