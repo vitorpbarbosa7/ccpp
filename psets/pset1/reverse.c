@@ -6,9 +6,9 @@ void backwards(char *str, int len){
   int caret = len;
   // null terminator for the string
   reversed[len] = '\0';
+  // we go back and go again forth, to added, and go back to continue to go back 
   for (int i = len - 1; i >= -1; --i) {
-    // if reached maximum length backwards
-    // or from the array of chars str, we found the empty string
+    // when a ' ' is found, we reached a word limit
     if (i == -1 || str[i] == ' '){
       for (int j = i + 1; j < caret; j++) {
         reversed[pos++] = str[j];
@@ -17,6 +17,7 @@ void backwards(char *str, int len){
         // add a separator here
         reversed[pos++] = ' ';
       }
+      // now we have a new limit of the beginning of that word
       caret = i;
     }
   }
