@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
 	int i = 1;
 
 	if (i < argc) {
+    printf("needs to print fib\n");
     // ascii to integer
 		print_fib(atoi(argv[i]));
 		i++;

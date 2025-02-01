@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "fibonacci.h"
 // needs to include the header file with the fib declaration
 
 void print_fib(int n) {
