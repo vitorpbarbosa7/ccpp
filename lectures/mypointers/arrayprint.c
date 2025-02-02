@@ -11,8 +11,11 @@ int main() {
 
 void arrayprint(int *arr, int size) {
   for (int i=0; i < size; i++) {
-    putchar(arr[i] + '0'); // convert integer to character
+    putchar(*arr + '0'); // convert integer to character
     putchar(' ');
+    arr++; // go to next location in memory
+           // like we did in 6.004
+           // computation structures
   }
   putchar('\n');
 }
