@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-const char* vegetable(const char *day) {
+const char* vegetable(const char* day) {
   if (strcmp(day, "Tuesday") != 0) {
     return "tomato";
   } else {
