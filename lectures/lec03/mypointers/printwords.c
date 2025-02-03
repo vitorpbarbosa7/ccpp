@@ -5,7 +5,7 @@ void myprint(const char *str);
 
 int main() {
   // Array of pointers to strings
-  char *words[] = {"hello", "world", "this", "is", "C", "programming"};
+  char *words[] = {"hello", "world", "this", "is", "C", "programming", NULL};
   
   // Pass the array of pointers to the printwords function
   printwords(words);
