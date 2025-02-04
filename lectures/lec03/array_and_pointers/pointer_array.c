@@ -11,5 +11,11 @@ int main(){
     printf("%p\n", vector);
     // memory location of first element of the array 
     printf("%p\n", &vector[0]);
+
+
+    printf("%d\n", pv[2]);
+    // using pointer arithmetic
+    printf("%d\n", *(pv+2));
+
     return 0;
 }
