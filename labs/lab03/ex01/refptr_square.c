@@ -8,14 +8,10 @@ void square(int* ptr_num) {
 
 int main() {
     int x = 4;
-    int* ptr = &x;
     // pointer is a memory location, so here we need to pass the 
     // memory address, and not the value itself
-    square(ptr);
+    square(&x);
     printf("%d\n",x);
-    printf("%d\n",*ptr);
-    printf("%p\n", &x);
-    printf("%p\n", ptr);
     return 0;
 }
 
