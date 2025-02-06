@@ -23,7 +23,7 @@ void sort(int* A, int n){
         // as per two conditions:
         //      - the A[i-1]>A[i]
         //      - and until the j is still bigger than or equal to 0 
-		while(*(A+j)>key && j>=0){
+		while(j>=0 && *(A+j)>key){
             // shifting greater elements to the right
             // that is why the greater j+1 receives the j
             // shifting to the right
