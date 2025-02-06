@@ -44,7 +44,7 @@ int main(){
 	int n = 10;
 
 	//Array array. Change this to become a dynamic array through malloc.
-	int array[n];
+	int* array = (int*) malloc(n*sizeof(int));
 
 	//Assign each element in the array a random number between 0 and 10
 	int i;
@@ -69,6 +69,10 @@ int main(){
 		printf("%d ",array[x]);
 	}
 	printf("\n");
+
+    free(array);
+    array = NULL;
+
 	return 0;
 
 }
