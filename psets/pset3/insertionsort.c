@@ -16,23 +16,23 @@ void sort(int* A, int n){
 	// outer O(n) passes, starting from the beginning
 	for(i=1; i<n; i++){
         // key is the key to be placed in the sorted subarray 
-		key = A[i];
+		key = *(A+i);
 		j=i-1;
 		//For each element in A, search for where it belong in the subarray preceeding it's current location
 		// go for the inner O(n) passes
         // as per two conditions:
         //      - the A[i-1]>A[i]
         //      - and until the j is still bigger than or equal to 0 
-		while(A[j]>key && j>=0){
+		while(*(A+j)>key && j>=0){
             // shifting greater elements to the right
             // that is why the greater j+1 receives the j
             // shifting to the right
-			A[j+1]=A[j];
+			*(A+j+1)=*(A+j);
 			j-=1;
 		}
         // put key in the right position after no more shifts were found
         // so key finally must stay here
-		A[j+1]=key;
+		*(A+j+1)=key;
 	}
 }
 
@@ -41,7 +41,7 @@ int main(){
 	srand(time(NULL));
 
 	//Read a user input integer and store it in n
-	int n = 5;
+	int n = 10;
 
 	//Array array. Change this to become a dynamic array through malloc.
 	int array[n];
