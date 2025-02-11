@@ -40,7 +40,7 @@ void initializeList(LinkedList* list) {
 void addHead(LinkedList* list, void* data) {
     //Adds data to the linked list’s head
     // initialize the node data type to add it here
-    Node *node = (Node*) malloc(sizeof(Node));
+    Node* node = (Node*) malloc(sizeof(Node));
     node->data = data;
     // if the list has no head
     if (list->head == NULL) {
