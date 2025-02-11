@@ -55,11 +55,53 @@ void addHead(LinkedList* list, void* data) {
     // anyway this list head will be this node
     list->head = node;
 }
-/*
-void addTail(LinkedList*, void*) //Adds data to the linked list’s tail
-void delete(LinkedList*, Node*) //Removes a node from the linked list
-Node *getNode(LinkedList*, COMPARE, void*) //Returns a pointer to the node containing a specific data item
-*/
+// void used as generic input data type for the node
+void addTail(LinkedList* list, void* data){
+    //Adds data to the linked list’s tail
+    Node* node = (Node*) malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    // if we still do not have a head, so this node will be the head
+    if (list->head == NULL) {
+        list->head = node;
+    } else {
+        // if this list has a head, so
+        // we set the current tail to point to the node 
+        list->tail->next = node;
+    }
+    list->tail = node;
+}
+
+Node *getNode(LinkedList *list, COMPARE compare , void* data) {
+    // traversing the linked list
+	Node *node = list->head;
+	while (node != NULL) {
+		if (compare(node->data, data) == 0) {
+            return node;
+		}
+		node = node->next;
+	}
+	return NULL;
+}
+
+void delete(LinkedList *list, Node *node) {
+	if (node == list->head) {
+		if (list->head->next == NULL) {
+			list->head = list->tail = NULL;
+		} else {
+			list->head = list->head->next;
+		}
+	} else {
+		Node *tmp = list->head;
+		while (tmp != NULL && tmp->next != node) {
+			tmp = tmp->next;
+		}
+		if (tmp != NULL) {
+			tmp->next = node->next;
+		}
+	}
+	free(node);
+}
 
 void displayLinkedList(LinkedList* list, DISPLAY display) {
     //traversing the linked list
@@ -88,6 +130,14 @@ int main() {
 	Employee* susan = (Employee*) malloc(sizeof(Employee));
 	strcpy(susan->name, "Susan");
 	susan->age = 45;
+
+	Employee* neymar = (Employee*) malloc(sizeof(Employee));
+	strcpy(neymar->name, "Neymar");
+	neymar->age = 33;
+	
+    Employee* raphinha = (Employee*) malloc(sizeof(Employee));
+	strcpy(raphinha->name, "Raphinha");
+	raphinha->age = 28;
     
     // pass a pointer to the linkedlist
     initializeList(&linkedList);
@@ -95,6 +145,13 @@ int main() {
     addHead(&linkedList, samuel);
     addHead(&linkedList, sally);
     addHead(&linkedList, susan);
+
+    addTail(&linkedList, neymar);
+    addTail(&linkedList, raphinha);
+
+	Node *node = getNode(&linkedList,
+            (COMPARE)compareEmployee, sally);
+    delete(&linkedList, node);
 
     displayLinkedList(&linkedList, (DISPLAY)displayEmployee);
 
