@@ -7,6 +7,7 @@ int main() {
 	Element* A = createElement('A');
 	Element* B = createElement('B');
 	Element* C = createElement('C');
+	Element* DD = createElement('D');
 
 	initializeTree(tree, B);
 	
@@ -15,13 +16,14 @@ int main() {
 
 	subtree_insert(tree, C, (COMPARE)compareElement);
 	subtree_insert(tree, A, (COMPARE)compareElement);
+	subtree_insert(tree, DD, (COMPARE)compareElement);
 
 	displayTree(tree, (DISPLAY)displayElement);
 
-	printf("\npor aqui\n ");
-	displayElement(tree->item);
-	displayElement(tree->left->item);
-	displayElement(tree->right->item);
+	// printf("\npor aqui\n ");
+	// displayElement(tree->item);
+	// displayElement(tree->left->item);
+	// displayElement(tree->right->item);
 
 
 	free(A);
