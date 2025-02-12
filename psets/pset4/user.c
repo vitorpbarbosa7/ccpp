@@ -5,10 +5,8 @@ int main() {
 	Node* tree;
 
 	Element* A = createElement('A');
-
-	displayElement(A);
-	// Element* B = createElement('B');
-	// Element* C = createElement('C');
+	Element* B = createElement('B');
+	Element* C = createElement('C');
 
 	// initializeTree(&tree);
 
