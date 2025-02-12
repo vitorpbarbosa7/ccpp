@@ -28,7 +28,7 @@ void displayElement(Element* element);
 Element* createElement(char key);
 int compareElement(Element* e1, Element *e2);
 
-void initializeTree(Node* tree);
+void initializeTree(Node* tree, Element* element);
 Node* subtree_first(Node* subtree);
 Node* subtree_last(Node* subtree);
 void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare);

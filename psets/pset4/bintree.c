@@ -16,7 +16,7 @@ void displayTree(Node* subtree, DISPLAY display){
     displayTree(subtree->left, display);
 
     //print the item itself
-    display(subtree);
+    display(subtree->item);
     printf("->");
 
     displayTree(subtree->right, display);
@@ -34,7 +34,9 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 	Node* newnode = (Node*) malloc(sizeof(Node));
 	newnode->item = element;
 
-	if (compare(newnode->item, subtree->item) == -1) {
+    int cmp = compare(newnode->item, subtree->item);
+
+	if (cmp < 0) {
 		// if less than we must go left, to insert left
 		// if the left node exists, we must traverse there recursively
 		if (subtree->left != NULL) {
@@ -47,7 +49,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		}
 	} else {
 		// now we must go right and find where to put it 
-		if (compare(newnode->item, subtree->item) == +1) {
+		if (cmp>0) {
 			if (subtree->right != NULL){
 				subtree_insert(subtree, newnode, compare);
 			} else {
@@ -57,7 +59,9 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		}
 		else {
 			// they are equal, so just set tem equal to one another
-			subtree->item = newnode->item;
+            // or do nothing
+			// subtree->item = newnode->item;
+            return;
 		}
 	}	
 }
@@ -65,8 +69,8 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 //TODO tree free all nodes??
 // traverse and go freeing them ??
 
-void initializeTree(Node* tree){
-	tree->item = NULL;
+void initializeTree(Node* tree, Element* element){
+	tree->item = element;
 	tree->parent = NULL;
 	tree->left = NULL;
 	tree->right = NULL;
@@ -145,7 +149,8 @@ Element* createElement(char key){
 	return element;
 }
 
-void displayElement(Element* element) { 
+void displayElement(Element* element) {
+    printf("Display element\n");
     printf("%c", element->key);
 }
 
