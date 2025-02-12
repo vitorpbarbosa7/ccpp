@@ -1,4 +1,8 @@
-#include <stddef.h>
+#include <stdio.h>
+#include <stddef.h>  // For offsetof
+#include <stdlib.h>  // For malloc, free
+#include <string.h>  // For strcpy, strcmp
+
 #include "bintree.h"
 
 
@@ -116,13 +120,21 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 
 Element* createElement(char key){
 	Element* element = (Element*) malloc(sizeof(Element));
-	strcpy(element->key, key);
+    // set the element key
+    element->key = key;
 	return element;
 }
 
 int compareElement(Element* e1, Element *e2){
-	// 1 if e1 greater than e2
-	// 0 if equal 
-	// -1 if e1 less than e2
-	return strcmp(e1->key, e2->key);
+    // -1 if e1 < e2
+    // 0 if e1 == e2
+    // +1 if e1 > e2 
+    return e1->key - e2->key;
+    // if (e1->key < e2->key) {
+    //     return -1;
+    // } else if (e1->key == e1->key) {
+    //     return 0;
+    // } else {
+    //     return +1;
+    // }
 }

@@ -10,20 +10,11 @@ int main() {
 
 	initializeTree(&tree);
 
-	subtree_insert(&tree, A, compareElement);
-	subtree_insert(&tree, C, compareElement);
-	subtree_insert(&tree, B, compareElement);
+	subtree_insert(&tree, A, (COMPARE)compareElement);
+	subtree_insert(&tree, C, (COMPARE)compareElement);
+	subtree_insert(&tree, B, (COMPARE)compareElement);
 
-	displayTree(&tree);
-
-
-
-
+	displayTree(&tree, (DISPLAY)displayTree);
 	
-
-
-
-
-
 	return 0;
 }

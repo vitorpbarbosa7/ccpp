@@ -1,6 +1,7 @@
 #ifndef BINTREE_H
 #define BINTREE_H
 
+#include <stdio.h>
 #include <stddef.h>  // For offsetof
 #include <stdlib.h>  // For malloc, free
 #include <string.h>  // For strcpy, strcmp
