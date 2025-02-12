@@ -1,6 +1,24 @@
 #include <stddef.h>
 #include "bintree.h"
 
+
+void displayTree(Node* subtree, DISPLAY display){
+
+    // if reached null, we return nothing, and just go back in the stack
+    if (subtree == NULL) {
+        return;
+    }
+    
+    // traverse left if possible
+    displayTree(subtree->left, display);
+
+    //print the item itself
+    display(subtree);
+    printf("->");
+
+    displayTree(subtree->right, display);
+}
+
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
 	// we create the node itself using the element data passed
 	Node* newnode = (Node*) malloc(sizeof(Node));

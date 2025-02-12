@@ -12,7 +12,7 @@ int compareEmployee(Employee *e1, Employee *e2) {
 }
 
 void displayEmployee(Employee* employee) { 
-    printf("%s\t%d\n", employee->name, employee->age);
+    printf("%s\t%d", employee->name, employee->age);
 }
 
 typedef void(*DISPLAY)(void*);

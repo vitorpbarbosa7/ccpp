@@ -10,6 +10,15 @@ int main() {
 
 	initializeTree(&tree);
 
+	subtree_insert(&tree, A, compareElement);
+	subtree_insert(&tree, C, compareElement);
+	subtree_insert(&tree, B, compareElement);
+
+	displayTree(&tree);
+
+
+
+
 	
 
 

@@ -13,9 +13,9 @@ typedef struct _element {
 // Define the Node structure
 typedef struct _node {
     void *item;
-    struct _node *parent;
-    struct _node *left;
-    struct _node *right;
+    struct _node* parent;
+    struct _node* left;
+    struct _node* right;
 } Node;
 
 // Define function pointer types for display and compare functions
@@ -32,5 +32,6 @@ Node* subtree_last(Node* subtree);
 void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare);
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare);
 void subtree_insert(Node* subtree, void* element, COMPARE compare);
+void displayTree(Node* subtree, DISPLAY display);
 
 #endif // BINTREE_H
