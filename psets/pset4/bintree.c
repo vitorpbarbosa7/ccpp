@@ -50,7 +50,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		// if the left node exists, we must traverse there recursively
         // induction step
 		if (subtree->left != NULL) {
-			subtree_insert(subtree->left, newnode, compare);
+			subtree_insert(subtree->left, element, compare);
 		}
 		// if the left not exists
 		else {
@@ -63,7 +63,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		if (cmp>0) {
 			if (subtree->right != NULL){
                 // induction step
-				subtree_insert(subtree->right, newnode, compare);
+				subtree_insert(subtree->right, element, compare);
 			} else {
                 printf("\n%c\n", ((Element*)element)->key);
                 printf("\n--------------passou aqui----------------\n");
