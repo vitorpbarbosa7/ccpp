@@ -23,6 +23,7 @@ void displayTree(Node* subtree, DISPLAY display){
 }
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
+    printf("porque essa bosta nao entra aqui");
 
     // Base case if the subtree is null, we go back in the stack 
     if (subtree == NULL) {
@@ -30,11 +31,10 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
     }
 
 	// we create the node itself using the element data passed
-    printf("passou nessa merda");
 	Node* newnode = (Node*) malloc(sizeof(Node));
 	newnode->item = element;
 
-	if (compare(newnode->item, subtree->item)) {
+	if (compare(newnode->item, subtree->item) == -1) {
 		// if less than we must go left, to insert left
 		// if the left node exists, we must traverse there recursively
 		if (subtree->left != NULL) {
@@ -47,7 +47,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		}
 	} else {
 		// now we must go right and find where to put it 
-		if (compare(newnode->item, subtree->item)) {
+		if (compare(newnode->item, subtree->item) == +1) {
 			if (subtree->right != NULL){
 				subtree_insert(subtree, newnode, compare);
 			} else {
