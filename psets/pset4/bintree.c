@@ -58,7 +58,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		if (cmp>0) {
 			if (subtree->right != NULL){
                 // induction step
-				subtree_insert(subtree, newnode, compare);
+				subtree_insert(subtree->right, newnode, compare);
 			} else {
                 printf("\npassou aqui\n");
                 printf("\n%c\n", ((Element*)element)->key);
