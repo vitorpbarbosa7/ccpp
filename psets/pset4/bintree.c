@@ -54,7 +54,10 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 			subtree->item = newnode->item;
 		}
 	}	
-} 
+}
+
+//TODO tree free all nodes??
+// traverse and go freeing them ??
 
 void initializeTree(Node* tree){
 	tree->item = NULL;
@@ -117,24 +120,31 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 		newnode->parent = subtree;
 	}	
 }
-
+;
 Element* createElement(char key){
 	Element* element = (Element*) malloc(sizeof(Element));
+    printf("passou aqui");
+    printf("%c", key);
     // set the element key
     element->key = key;
 	return element;
 }
 
+void displayElement(Element* element) { 
+    printf("%s", element->key);
+}
+
+
 int compareElement(Element* e1, Element *e2){
     // -1 if e1 < e2
     // 0 if e1 == e2
     // +1 if e1 > e2 
-    return e1->key - e2->key;
-    // if (e1->key < e2->key) {
-    //     return -1;
-    // } else if (e1->key == e1->key) {
-    //     return 0;
-    // } else {
-    //     return +1;
-    // }
+    // return e1->key - e2->key;
+    if (e1->key < e2->key) {
+        return -1;
+    } else if (e1->key == e1->key) {
+        return 0;
+    } else {
+        return +1;
+    }
 }

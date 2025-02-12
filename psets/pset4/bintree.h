@@ -23,6 +23,7 @@ typedef struct _node {
 typedef void (*DISPLAY)(void*);
 typedef int (*COMPARE)(void*, void*);
 
+void displayElement(Element* element);
 // Function prototypes
 Element* createElement(char key);
 int compareElement(Element* e1, Element *e2);
