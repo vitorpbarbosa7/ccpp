@@ -1,18 +1,38 @@
 #include <stddef.h>
 #include "bintree.h"
 
-Element* createElement(char key){
-	Element* element = (Element*) malloc(sizeof(Element));
-	strcpy(element->key, key);
-	return element;
-}
+void subtree_insert(Node* subtree, void* element, COMPARE compare){
+	// we create the node itself using the element data passed
+	Node* newnode = (Node*) malloc(sizeof(Node));
+	newnode->item = element;
 
-int compareElement(Element* e1, Element *e2){
-	// 1 if e1 greater than e2
-	// 0 if equal 
-	// -1 if e1 less than e2
-	return strcmp(e1->key, e2->key);
-}
+	if (compare(newnode->item, subtree->item)) {
+		// if less than we must go left, to insert left
+		// if the left node exists, we must traverse there recursively
+		if (subtree->left != NULL) {
+			subtree_insert(subtree, newnode, compare);
+		}
+		// if the left not exists
+		else {
+			// if finally has no left, we insert here before it
+			subtree_insert_before(subtree, newnode, compare);
+		}
+	} else {
+		// now we must go right and find where to put it 
+		if (compare(newnode->item, subtree->item)) {
+			if (subtree->right != NULL){
+				subtree_insert(subtree, newnode, compare);
+			} else {
+				// the successor is here after no right node was found
+				subtree_insert_after(subtree, newnode, compare);
+			}
+		}
+		else {
+			// they are equal, so just set tem equal to one another
+			subtree->item = newnode->item;
+		}
+	}	
+} 
 
 void initializeTree(Node* tree){
 	tree->item = NULL;
@@ -76,35 +96,15 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 	}	
 }
 
-void subtree_insert(Node* subtree, void* element, COMPARE compare){
-	// we create the node itself using the element data passed
-	Node* newnode = (Node*) malloc(sizeof(Node));
-	newnode->item = element;
+Element* createElement(char key){
+	Element* element = (Element*) malloc(sizeof(Element));
+	strcpy(element->key, key);
+	return element;
+}
 
-	if (compare(newnode->item, subtree->item)) {
-		// if less than we must go left, to insert left
-		// if the left node exists, we must traverse there recursively
-		if (subtree->left != NULL) {
-			subtree_insert(subtree, newnode, compare);
-		}
-		// if the left not exists
-		else {
-			// if finally has no left, we insert here before it
-			subtree_insert_before(subtree, newnode, compare);
-		}
-	} else {
-		// now we must go right and find where to put it 
-		if (compare(newnode->item, subtree->item)) {
-			if (subtree->right != NULL){
-				subtree_insert(subtree, newnode, compare);
-			} else {
-				// the successor is here after no right node was found
-				subtree_insert_after(subtree, newnode, compare);
-			}
-		}
-		else {
-			// they are equal, so just set tem equal to one another
-			subtree->item = newnode->item;
-		}
-	}	
-} 
+int compareElement(Element* e1, Element *e2){
+	// 1 if e1 greater than e2
+	// 0 if equal 
+	// -1 if e1 less than e2
+	return strcmp(e1->key, e2->key);
+}
