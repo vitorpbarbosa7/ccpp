@@ -38,14 +38,18 @@ void initializeTree(Node* tree){
 void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
 	//TODO
 
-	// if it has a left, we must be carefull because must after the last one in the left
-	if ()
-
-
-	else:
+	// if it has a left, must find the right most node, and put 
+	// the new node there
+	if (subtree->left != NULL) {
+		Node* rightMostNode;
+		rightMostNode = subtree_last(subtree->left);
+		rightMostNode->right->right = newnode; 
+		newnode->parent = rightMostNode;
+	} else {
 		// if it really has no left, so we just put it here in the left part
 		subtree->left = newnode;
 		newnode->parent =subtree; 
+	}
 
 }
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
