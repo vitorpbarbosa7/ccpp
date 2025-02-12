@@ -5,7 +5,7 @@
 
 #include "bintree.h"
 
-void displayTree(Node* subtree, DISPLAY display){
+void _displayTree(Node* subtree, DISPLAY display){
 
     // if reached null, we return nothing, and just go back in the stack
     if (subtree == NULL) {
@@ -13,13 +13,19 @@ void displayTree(Node* subtree, DISPLAY display){
     }
     
     // traverse left if possible
-    displayTree(subtree->left, display);
+    _displayTree(subtree->left, display);
 
     //print the item itself
     display(subtree->item);
     printf("->");
 
-    displayTree(subtree->right, display);
+    _displayTree(subtree->right, display);
+}
+
+void displayTree(Node* subtree, DISPLAY display) {
+    printf("Tree Display: \n");
+    _displayTree(subtree, display);
+    printf("\n");
 }
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
