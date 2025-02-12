@@ -148,7 +148,7 @@ Element* createElement(char key){
 }
 
 void displayElement(Element* element) {
-    printf("%c", element->key);
+    printf(" [%c] ", element->key);
 }
 
 

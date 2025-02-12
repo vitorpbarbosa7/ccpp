@@ -18,9 +18,10 @@ int main() {
 
 	displayTree(tree, (DISPLAY)displayElement);
 
-	// printf("\npor aqui\n ");
-	// printf("%c", tree->item->key);
-	// printf("%c", tree->item->key);
+	printf("\npor aqui\n ");
+	displayElement(tree->item);
+	displayElement(tree->left->item);
+	displayElement(tree->right->item);
 
 
 	free(A);

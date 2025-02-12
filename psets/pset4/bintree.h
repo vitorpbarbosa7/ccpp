@@ -35,5 +35,6 @@ void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare);
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare);
 void subtree_insert(Node* subtree, void* element, COMPARE compare);
 void displayTree(Node* subtree, DISPLAY display);
+void displayNode(Node* node, DISPLAY display);
 
 #endif // BINTREE_H
