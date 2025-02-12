@@ -23,8 +23,6 @@ void displayTree(Node* subtree, DISPLAY display){
 }
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
-    printf("porque essa bosta nao entra aqui");
-
     // Base case if the subtree is null, we go back in the stack 
     if (subtree == NULL) {
         return;
@@ -150,7 +148,6 @@ Element* createElement(char key){
 }
 
 void displayElement(Element* element) {
-    printf("Display element\n");
     printf("%c", element->key);
 }
 

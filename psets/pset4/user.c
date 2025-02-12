@@ -2,29 +2,31 @@
 #include "bintree.h"
 
 int main() {
-	Node tree;
+	Node* tree = (Node*) malloc(sizeof(Node));
 
 	Element* A = createElement('A');
-	displayElement(A);
-	printf("\n Debug inicial \n");
 	Element* B = createElement('B');
 	Element* C = createElement('C');
 
-	initializeTree(&tree, B);
+	initializeTree(tree, B);
 	
 	// pointer to this kind of function, that is why cast is necessary
-	displayTree(&tree, (DISPLAY)displayElement);
+	displayTree(tree, (DISPLAY)displayElement);
 
-	// subtree_insert(&tree, C, (COMPARE)compareElement);
-	// subtree_insert(&tree, A, (COMPARE)compareElement);
+	subtree_insert(tree, C, (COMPARE)compareElement);
+	subtree_insert(tree, A, (COMPARE)compareElement);
 
-	// displayTree(&tree, (DISPLAY)displayElement);
+	displayTree(tree, (DISPLAY)displayElement);
+
+	// printf("\npor aqui\n ");
+	// printf("%c", tree->item->key);
+	// printf("%c", tree->item->key);
 
 
 	free(A);
 	// free(B);
 	// free(C);
-	// free(&tree);
+	// free(tree);
 	
 	return 0;
 }
