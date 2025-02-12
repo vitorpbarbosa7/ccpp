@@ -35,15 +35,37 @@ void initializeTree(Node* tree){
 	tree->right = NULL;
 }
 
+Node* subtree_first(Node* subtree){
+	// Go left to return the most left node
+
+	if (subtree->left) {
+		// linear recursion, continue to go down 
+		return subtree_first(subtree->left);
+	} else {
+		return subtree;
+	}
+}
+
+Node* subtree_last(Node* subtree){
+	// Go right to return the most right node
+
+	if (subtree->right) {
+		// linear recursion, continue to go down 
+		return subtree_last(subtree->right);
+	} else {
+		return subtree;
+	}
+}
+
 void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
-	//TODO
 
 	// if it has a left, must find the right most node, and put 
+	// if it has no left, therefore we can find the right most node and insert there 
 	// the new node there
 	if (subtree->left != NULL) {
 		Node* rightMostNode;
 		rightMostNode = subtree_last(subtree->left);
-		rightMostNode->right->right = newnode; 
+		rightMostNode->right = newnode; 
 		newnode->parent = rightMostNode;
 	} else {
 		// if it really has no left, so we just put it here in the left part
@@ -53,7 +75,18 @@ void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
 
 }
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
-	//TODO
+	if (subtree->right != NULL){
+		// must find the first node after this subtree node
+		Node* leftMostNode;
+		leftMostNode = subtree_first(subtree->right);
+		leftMostNode->left = newnode;
+		newnode->parent = leftMostNode;
+	} else {
+		// if it has no right, therefore is the case where we can insert it 
+		// directly here in the right
+		subtree->right = newnode;
+		newnode->parent = subtree;
+	}	
 }
 
 
@@ -71,7 +104,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		}
 		// if the left not exists
 		else {
-			// the predecessor might be going up and after down in a right subtree
+			// if finally has no left, we insert here before it
 			subtree_insert_before(subtree, newnode, compare);
 		}
 	} else {
@@ -80,7 +113,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 			if (subtree->right != NULL){
 				subtree_insert(subtree, newnode, compare);
 			} else {
-				// the successor might be going down and left
+				// the successor is here after no right node was found
 				subtree_insert_after(subtree, newnode, compare);
 			}
 		}
