@@ -5,7 +5,6 @@
 
 #include "bintree.h"
 
-
 void displayTree(Node* subtree, DISPLAY display){
 
     // if reached null, we return nothing, and just go back in the stack
@@ -123,15 +122,14 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 ;
 Element* createElement(char key){
 	Element* element = (Element*) malloc(sizeof(Element));
-    printf("passou aqui");
-    printf("%c", key);
+    printf("\npassou aqui\n");
     // set the element key
     element->key = key;
 	return element;
 }
 
 void displayElement(Element* element) { 
-    printf("%s", element->key);
+    printf("%c", element->key);
 }
 
 

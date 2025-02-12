@@ -2,7 +2,7 @@
 #include "bintree.h"
 
 int main() {
-	Node tree;
+	Node* tree;
 
 	Element* A = createElement('A');
 
