@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include "bintree.h"
 
-
 typedef struct _element{
 	char key;
 } Element;
 
 int compareElement(Element* e1, Element *e2){
-	// 1
+	// 1 if e1 greater than e2
+	// 0 if equal 
+	// -1 if e1 less than e2
 	return strcmp(e1->key, e2->key);
 }
 
 typedef void(*DISPLAY)(void*);
 typedef int(*COMPARE)(void*, void*);
-
 
 Element* createElement(char key){
 	Element* element = (Element*) malloc(sizeof(Element));
@@ -74,6 +74,7 @@ void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
 	}
 
 }
+
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 	if (subtree->right != NULL){
 		// must find the first node after this subtree node
@@ -88,8 +89,6 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 		newnode->parent = subtree;
 	}	
 }
-
-
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
 	// we create the node itself using the element data passed
@@ -121,20 +120,8 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 			// they are equal, so just set tem equal to one another
 			subtree->item = newnode->item;
 		}
-
-
-	}
-
-		
-	} 
-
-	}
-
-
-
-}
-
-
+	}	
+} 
 
 int main() {
 	Node tree;
@@ -145,7 +132,7 @@ int main() {
 
 	initializeTree(&tree);
 
-	addNode(&tree, B);
+	
 
 
 

@@ -1,25 +1,110 @@
 #include <stddef.h>
 #include "bintree.h"
 
-///*** DO NOT CHANGE ANY FUNCTION DEFINITIONS ***///
+Element* createElement(char key){
+	Element* element = (Element*) malloc(sizeof(Element));
+	strcpy(element->key, key);
+	return element;
+}
 
-// Recall node is defined in the header file
-node *root = NULL;
+int compareElement(Element* e1, Element *e2){
+	// 1 if e1 greater than e2
+	// 0 if equal 
+	// -1 if e1 less than e2
+	return strcmp(e1->key, e2->key);
+}
 
-// Insert a new node into the binary tree with node_id and data
-void insert_node(int node_id, int data) {
+void initializeTree(Node* tree){
+	tree->item = NULL;
+	tree->parent = NULL;
+	tree->left = NULL;
+	tree->right = NULL;
+}
+
+Node* subtree_first(Node* subtree){
+	// Go left to return the most left node
+
+	if (subtree->left) {
+		// linear recursion, continue to go down 
+		return subtree_first(subtree->left);
+	} else {
+		return subtree;
+	}
+}
+
+Node* subtree_last(Node* subtree){
+	// Go right to return the most right node
+
+	if (subtree->right) {
+		// linear recursion, continue to go down 
+		return subtree_last(subtree->right);
+	} else {
+		return subtree;
+	}
+}
+
+void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
+
+	// if it has a left, must find the right most node, and put 
+	// if it has no left, therefore we can find the right most node and insert there 
+	// the new node there
+	if (subtree->left != NULL) {
+		Node* rightMostNode;
+		rightMostNode = subtree_last(subtree->left);
+		rightMostNode->right = newnode; 
+		newnode->parent = rightMostNode;
+	} else {
+		// if it really has no left, so we just put it here in the left part
+		subtree->left = newnode;
+		newnode->parent =subtree; 
+	}
 
 }
 
-// Find the node with node_id, and return its data
-int find_node_data(int node_id) {
-	
+void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
+	if (subtree->right != NULL){
+		// must find the first node after this subtree node
+		Node* leftMostNode;
+		leftMostNode = subtree_first(subtree->right);
+		leftMostNode->left = newnode;
+		newnode->parent = leftMostNode;
+	} else {
+		// if it has no right, therefore is the case where we can insert it 
+		// directly here in the right
+		subtree->right = newnode;
+		newnode->parent = subtree;
+	}	
 }
 
-///***** OPTIONAL: Challenge yourself w/ deletion if you want ***///
-/*//Find and remove a node in the binary tree with node_id. 
-//Children nodes are fixed appropriately.
-void remove_node(int node_id) {
-	
-}
-*/
+void subtree_insert(Node* subtree, void* element, COMPARE compare){
+	// we create the node itself using the element data passed
+	Node* newnode = (Node*) malloc(sizeof(Node));
+	newnode->item = element;
+
+	if (compare(newnode->item, subtree->item)) {
+		// if less than we must go left, to insert left
+		// if the left node exists, we must traverse there recursively
+		if (subtree->left != NULL) {
+			subtree_insert(subtree, newnode, compare);
+		}
+		// if the left not exists
+		else {
+			// if finally has no left, we insert here before it
+			subtree_insert_before(subtree, newnode, compare);
+		}
+	} else {
+		// now we must go right and find where to put it 
+		if (compare(newnode->item, subtree->item)) {
+			if (subtree->right != NULL){
+				subtree_insert(subtree, newnode, compare);
+			} else {
+				// the successor is here after no right node was found
+				subtree_insert_after(subtree, newnode, compare);
+			}
+		}
+		else {
+			// they are equal, so just set tem equal to one another
+			subtree->item = newnode->item;
+		}
+	}	
+} 
