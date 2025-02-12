@@ -42,6 +42,9 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 
     int cmp = compare(newnode->item, subtree->item);
 
+    printf(" tree [%c]\n ", ((Element*)subtree->item)->key);
+    printf(" new node [%c]\n ", ((Element*)newnode->item)->key);
+
 	if (cmp < 0) {
 		// if less than we must go left, to insert left
 		// if the left node exists, we must traverse there recursively

@@ -16,6 +16,7 @@ int main() {
 
 	subtree_insert(tree, C, (COMPARE)compareElement);
 	subtree_insert(tree, A, (COMPARE)compareElement);
+    printf("\n\nInsert D now###################" );
 	subtree_insert(tree, D, (COMPARE)compareElement);
 
 	displayTree(tree, (DISPLAY)displayElement);
