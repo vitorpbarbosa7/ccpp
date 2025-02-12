@@ -29,11 +29,10 @@ void displayTree(Node* subtree, DISPLAY display) {
 }
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
-    printf("\nsubtree_insert enter\n");
+    printf("-------------subtree_insert enter----------\n");
     printf("\n%c\n", ((Element*)element)->key);
-    printf("\nsubtree_insert continue\n");
     // Base case if the subtree is null, we go back in the stack 
-    if (subtree == NULL) {
+    if (subtree == NULL || subtree->item == NULL) {
         return;
     }
 
@@ -63,9 +62,8 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
                 // induction step
 				subtree_insert(subtree->right, newnode, compare);
 			} else {
-                printf("\npassou aqui\n");
                 printf("\n%c\n", ((Element*)element)->key);
-                printf("\npassou aqui\n");
+                printf("\n--------------passou aqui----------------\n");
 				// the successor is here after no right node was found
                 // base case 
 				subtree_insert_after(subtree, newnode, compare);
@@ -92,7 +90,7 @@ void initializeTree(Node* tree, Element* element){
 
 Node* subtree_first(Node* subtree){
     // avoid dereferencing null pointer 
-    if (subtree == NULL) return NULL;
+    if (subtree == NULL || subtree->item == NULL) return NULL;
 
 	// Go left to return the most left node
 
@@ -106,7 +104,7 @@ Node* subtree_first(Node* subtree){
 
 Node* subtree_last(Node* subtree){
     // avoid dereferencing null pointer 
-    if (subtree == NULL) return NULL;
+    if (subtree == NULL || subtree->item == NULL) return NULL;
 
 	// Go right to return the most right node
 
@@ -120,7 +118,7 @@ Node* subtree_last(Node* subtree){
 
 void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
     // avoid dereferencing null pointer 
-    if (subtree == NULL) return;
+    if (subtree == NULL || subtree->item == NULL) return;
 
 	// if it has a left, must find the right most node, and put 
 	// if it has no left, therefore we can find the right most node and insert there 
@@ -140,7 +138,7 @@ void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
 
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
     // avoid dereferencing null pointer 
-    if (subtree == NULL) return;
+    if (subtree == NULL || subtree->item == NULL) return;
 
 	if (subtree->right != NULL){
 		// must find the first node after this subtree node
