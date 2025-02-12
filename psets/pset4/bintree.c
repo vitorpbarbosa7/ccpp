@@ -139,7 +139,7 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 		newnode->parent = subtree;
 	}	
 }
-;
+
 Element* createElement(char key){
 	Element* element = (Element*) malloc(sizeof(Element));
     // set the element key

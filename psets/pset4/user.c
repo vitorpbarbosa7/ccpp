@@ -7,6 +7,7 @@ int main() {
 	Element* A = createElement('A');
 	Element* B = createElement('B');
 	Element* C = createElement('C');
+	Element* D = createElement('D');
 
 	initializeTree(tree, B);
 	
