@@ -17,13 +17,13 @@ int main() {
 	// subtree_insert(&tree, C, (COMPARE)compareElement);
 	// subtree_insert(&tree, B, (COMPARE)compareElement);
 
-	displayTree(&tree, (DISPLAY)displayElement);
+	// displayTree(&tree, (DISPLAY)displayElement);
 
 
 	free(A);
 	// free(B);
 	// free(C);
-	// free(tree);
+	// free(&tree);
 	
 	return 0;
 }

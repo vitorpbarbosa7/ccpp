@@ -23,7 +23,14 @@ void displayTree(Node* subtree, DISPLAY display){
 }
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
+
+    // Base case if the subtree is null, we go back in the stack 
+    if (subtree == NULL) {
+        return;
+    }
+
 	// we create the node itself using the element data passed
+    printf("passou nessa merda");
 	Node* newnode = (Node*) malloc(sizeof(Node));
 	newnode->item = element;
 
@@ -66,6 +73,9 @@ void initializeTree(Node* tree){
 }
 
 Node* subtree_first(Node* subtree){
+    // avoid dereferencing null pointer 
+    if (subtree == NULL) return NULL;
+
 	// Go left to return the most left node
 
 	if (subtree->left) {
@@ -77,6 +87,9 @@ Node* subtree_first(Node* subtree){
 }
 
 Node* subtree_last(Node* subtree){
+    // avoid dereferencing null pointer 
+    if (subtree == NULL) return NULL;
+
 	// Go right to return the most right node
 
 	if (subtree->right) {
@@ -88,6 +101,8 @@ Node* subtree_last(Node* subtree){
 }
 
 void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
+    // avoid dereferencing null pointer 
+    if (subtree == NULL) return;
 
 	// if it has a left, must find the right most node, and put 
 	// if it has no left, therefore we can find the right most node and insert there 
@@ -106,6 +121,9 @@ void subtree_insert_before(Node* subtree, Node* newnode, COMPARE compare) {
 }
 
 void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
+    // avoid dereferencing null pointer 
+    if (subtree == NULL) return;
+
 	if (subtree->right != NULL){
 		// must find the first node after this subtree node
 		Node* leftMostNode;
@@ -122,7 +140,6 @@ void subtree_insert_after(Node* subtree, Node* newnode, COMPARE compare) {
 ;
 Element* createElement(char key){
 	Element* element = (Element*) malloc(sizeof(Element));
-    printf("\npassou aqui\n");
     // set the element key
     element->key = key;
 	return element;
@@ -140,7 +157,7 @@ int compareElement(Element* e1, Element *e2){
     // return e1->key - e2->key;
     if (e1->key < e2->key) {
         return -1;
-    } else if (e1->key == e1->key) {
+    } else if (e1->key == e2->key) {
         return 0;
     } else {
         return +1;
