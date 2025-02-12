@@ -29,6 +29,9 @@ void displayTree(Node* subtree, DISPLAY display) {
 }
 
 void subtree_insert(Node* subtree, void* element, COMPARE compare){
+    printf("\nsubtree_insert enter\n");
+    printf("\n%c\n", ((Element*)element)->key);
+    printf("\nsubtree_insert continue\n");
     // Base case if the subtree is null, we go back in the stack 
     if (subtree == NULL) {
         return;
