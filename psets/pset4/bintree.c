@@ -43,11 +43,13 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 	if (cmp < 0) {
 		// if less than we must go left, to insert left
 		// if the left node exists, we must traverse there recursively
+        // induction step
 		if (subtree->left != NULL) {
-			subtree_insert(subtree, newnode, compare);
+			subtree_insert(subtree->left, newnode, compare);
 		}
 		// if the left not exists
 		else {
+            // this is the base case
 			// if finally has no left, we insert here before it
 			subtree_insert_before(subtree, newnode, compare);
 		}
@@ -55,9 +57,14 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 		// now we must go right and find where to put it 
 		if (cmp>0) {
 			if (subtree->right != NULL){
+                // induction step
 				subtree_insert(subtree, newnode, compare);
 			} else {
+                printf("\npassou aqui\n");
+                printf("\n%c\n", ((Element*)element)->key);
+                printf("\npassou aqui\n");
 				// the successor is here after no right node was found
+                // base case 
 				subtree_insert_after(subtree, newnode, compare);
 			}
 		}
@@ -158,14 +165,14 @@ void displayElement(Element* element) {
 }
 
 
-int compareElement(Element* e1, Element *e2){
+int compareElement(Element* newnode, Element *node_ref){
     // -1 if e1 < e2
     // 0 if e1 == e2
     // +1 if e1 > e2 
     // return e1->key - e2->key;
-    if (e1->key < e2->key) {
+    if (newnode->key < node_ref->key) {
         return -1;
-    } else if (e1->key == e2->key) {
+    } else if (newnode->key == node_ref->key) {
         return 0;
     } else {
         return +1;

@@ -7,7 +7,7 @@ int main() {
 	Element* A = createElement('A');
 	Element* B = createElement('B');
 	Element* C = createElement('C');
-	Element* DD = createElement('D');
+	Element* D = createElement('D');
 
 	initializeTree(tree, B);
 	
@@ -16,7 +16,7 @@ int main() {
 
 	subtree_insert(tree, C, (COMPARE)compareElement);
 	subtree_insert(tree, A, (COMPARE)compareElement);
-	subtree_insert(tree, DD, (COMPARE)compareElement);
+	subtree_insert(tree, D, (COMPARE)compareElement);
 
 	displayTree(tree, (DISPLAY)displayElement);
 
