@@ -20,17 +20,7 @@ int main() {
 	subtree_insert(tree, D, (COMPARE)compareElement);
 
 	displayTree(tree, (DISPLAY)displayElement);
-
-	// printf("\npor aqui\n ");
-	// displayElement(tree->item);
-	// displayElement(tree->left->item);
-	// displayElement(tree->right->item);
-
-
-	free(A);
-	// free(B);
-	// free(C);
-	// free(tree);
+    freeTree(tree);
 	
 	return 0;
 }

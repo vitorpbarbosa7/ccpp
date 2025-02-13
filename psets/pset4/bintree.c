@@ -22,6 +22,22 @@ void _displayTree(Node* subtree, DISPLAY display){
     _displayTree(subtree->right, display);
 }
 
+void freeTree(Node* subtree){
+
+    // if reached null, we return nothing, and just go back in the stack
+    if (subtree == NULL) {
+        return;
+    }
+    
+    // traverse left if possible
+    freeTree(subtree->left);
+    
+    free(subtree->item); 
+    free(subtree);
+    
+    freeTree(subtree->right);
+}
+
 void displayTree(Node* subtree, DISPLAY display) {
     printf("Tree Display: \n");
     _displayTree(subtree, display);
