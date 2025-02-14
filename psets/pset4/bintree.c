@@ -49,12 +49,15 @@ void freeTree(Node* node) {
 	// after has no childen, we clear the current node
 	free(node->item);
 	node->item = NULL;
+    node->left = NULL;
+    node->right = NULL;
 
 	// clear left child
 	if (node->parent != NULL) {
 		if (node->parent->left == node) {
 		// set to NULL node parent children left 
 		node->parent->left = NULL;
+
 
 		// clear right right
 		} else if (node->parent->right == node) {
@@ -66,7 +69,6 @@ void freeTree(Node* node) {
 	// free the node itself
 	free(node);
 	node = NULL;
-
 }
 
 void displayTree(Node* subtree, DISPLAY display) {
