@@ -47,8 +47,10 @@ void freeTree(Node* node) {
 	}
 
 	// after has no childen, we clear the current node
-	free(node->item);
-	node->item = NULL;
+    if (node->item != NULL) {
+        free(node->item);
+        node->item = NULL;
+    }
     node->left = NULL;
     node->right = NULL;
 
@@ -68,7 +70,6 @@ void freeTree(Node* node) {
 	
 	// free the node itself
 	free(node);
-	node = NULL;
 }
 
 void displayTree(Node* subtree, DISPLAY display) {

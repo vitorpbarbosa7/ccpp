@@ -20,6 +20,7 @@ int main() {
 	subtree_insert(tree, D, (COMPARE)compareElement);
 
 	displayTree(tree, (DISPLAY)displayElement);
+
     freeTree(tree);
 	
 	return 0;
