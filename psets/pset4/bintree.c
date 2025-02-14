@@ -6,6 +6,8 @@
 #include "bintree.h"
 
 void _displayTree(Node* subtree, DISPLAY display){
+	// IN ORDER
+	// left, current, right (the print display one)
 
     // if reached null, we return nothing, and just go back in the stack
     if (subtree == NULL) {
@@ -25,6 +27,13 @@ void _displayTree(Node* subtree, DISPLAY display){
 void freeTree(Node* node) {
     if (node == NULL) return;
 
+	// PRE ORDER
+	// - current, left, right
+
+	// IN ORDER
+	// left, current, right (the print display one)
+
+	/// DEPTH FIRST TRAVERSAL POST ORDER 
 	// induction step 
     
 	// clear all left nodes
