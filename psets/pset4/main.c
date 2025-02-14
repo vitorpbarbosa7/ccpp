@@ -2,15 +2,15 @@
 #include "bintree.h"
 
 int main() {
-	Node* tree = (Node*) malloc(sizeof(Node));
 
 	Element* A = createElement('A');
 	Element* B = createElement('B');
 	Element* C = createElement('C');
 	Element* D = createElement('D');
+    
+    // initialize tree
+    Node* tree = createNode(B);
 
-	initializeTree(tree, B);
-	
 	// pointer to this kind of function, that is why cast is necessary
 	displayTree(tree, (DISPLAY)displayElement);
 

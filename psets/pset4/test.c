@@ -2,7 +2,6 @@
 #include "bintree.h"
 
 int main() {
-    Node* tree = (Node*) malloc(sizeof(Node));
 
     Element* A = createElement('A');
     Element* B = createElement('B');
@@ -15,7 +14,7 @@ int main() {
     Element* I = createElement('I');
     Element* J = createElement('J');
 
-    initializeTree(tree, B);
+    createNode(tree, B);
 
     // Display the tree after initializing with B
     displayTree(tree, (DISPLAY)displayElement);

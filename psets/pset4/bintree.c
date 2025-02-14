@@ -84,8 +84,7 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
     }
 
 	// we create the node itself using the element data passed
-	Node* newnode = (Node*) malloc(sizeof(Node));
-	newnode->item = element;
+    Node* newnode = createNode(element);
 
     int cmp = compare(newnode->item, subtree->item);
 
@@ -131,11 +130,15 @@ void subtree_insert(Node* subtree, void* element, COMPARE compare){
 //TODO tree free all nodes??
 // traverse and go freeing them ??
 
-void initializeTree(Node* tree, Element* element){
-	tree->item = element;
-	tree->parent = NULL;
-	tree->left = NULL;
-	tree->right = NULL;
+Node* createNode(Element* element){
+
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->item = element;
+    node->parent = NULL;
+    node->left = NULL;
+    node->right = NULL;
+
+    return node;
 }
 
 Node* subtree_first(Node* subtree){
@@ -214,7 +217,6 @@ Element* createElement(char key){
 void displayElement(Element* element) {
     printf(" [%c] ", element->key);
 }
-
 
 int compareElement(Element* newnode, Element *node_ref){
     // -1 if e1 < e2
