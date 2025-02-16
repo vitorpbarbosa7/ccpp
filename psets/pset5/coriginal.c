@@ -22,21 +22,17 @@ void printGrade(Grade* grade) {
     printf("Grade: %d: %c\n", grade->percent, grade->letter);
 }
 
-int main() {
+int main(){
     Grade g;
     int percent;
-    char letter;
-
-    printf("Enter percentage grade: ");
+    
+    printf("Enter two grades separated by a space. Use a percentage for the first and letter for the second: ");
     scanf("%d", &percent);
+    scanf("\n");
+    
     setGradeByPercent(&g, percent);
     printGrade(&g);
-
-    printf("Enter letter grade: ");
-    scanf(" %c", &letter);
-    setGradeByLetter(&g, letter);
+    
+    setGradeByLetter(&g, getchar());
     printGrade(&g);
-
-    return 0;
 }
-
