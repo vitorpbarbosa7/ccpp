@@ -35,16 +35,15 @@ class Grade {
 
 int main() {
 	Grade g;
-	int percent;
-    printf("Enter two grades separated by a space. Use a percentage for the first and letter for the second: ");
-	scanf("%d", &percent);
-	scanf("\n");
+	int percent = 100;
+    char myChar = 'F';
 	
 	g.setByPercent(percent);
 	g.print();
 	
-	g.setByLetter(getchar());
+	g.setByLetter(myChar);
 	g.print();
 
 	return 0;
 }
+
