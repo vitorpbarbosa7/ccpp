@@ -7,11 +7,18 @@ template <class T>
 class Grade {
     public:
         // Constructor
-        Grade() = default;
+        Grade() : letter('F'), percent(0) {};
+        
 
+        void setByPercent(int& percent) {
+            this->percent = percent;
+            this->grade = this->GRADE_MAP[this->percent/10];
+        }
 
         // public functions
-        void print() {
+        void print() const {
+            std::cout << "Grade: " << this->grade << ": " << this->letter << std::endl;
+
 
         }
 
@@ -21,13 +28,11 @@ class Grade {
     private:
         char letter;
         int percent;
-        char GRADE_MAP[] = { 'F', 'F', 'F', 'F', 'F', 'F', 'D', 'C', 'B', 'A', 'A'};
+        static const char GRADE_MAP[11];
 
-        void setByPercent(int& percent) {
-            this->percent = percent;
-            this->grade = this->GRADE_MAP[this->percent/10];
-        }
+};
 
+const char Grade::GRADE_MAP[11] = { 'F', 'F', 'F', 'F', 'F', 'F', 'D', 'C', 'B', 'A', 'A'};
 
 
 int main() {
@@ -35,7 +40,7 @@ int main() {
 	int percent;
     printf("Enter two grades separated by a space. Use a percentage for the first and letter for the second: ");
 	scanf("%d", &percent);
-	scanf("\n");
+	//scanf("\n");
 	
 	g.setByPercent(percent);
 	g.print();
