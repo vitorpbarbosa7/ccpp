@@ -17,6 +17,8 @@ public:
     }
 
     // Destructor: Frees allocated memory
+    // I needed to free the variables, but the object itself was automatically
+    // by defining how would do this
     ~Rectangle() {
         std::cout << "Destructor called!" <<std::endl;
         delete width;
