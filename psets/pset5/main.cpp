@@ -1,29 +1,49 @@
 #include <iostream>
 
 
+template <class T>
+
+
 class Grade {
     public:
         // Constructor
+        Grade() = default;
 
+
+        // public functions
+        void print() {
+
+        }
+
+
+
+
+    private:
+        char letter;
+        int percent;
+        char GRADE_MAP[] = { 'F', 'F', 'F', 'F', 'F', 'F', 'D', 'C', 'B', 'A', 'A'};
+
+        void setByPercent(int& percent) {
+            this->percent = percent;
+            this->grade = this->GRADE_MAP[this->percent/10];
+        }
 
 
 
 int main() {
-    Grade g;
-    int percent;
-    char letter;
+	Grade g;
+	int percent;
+	
+	printf("Enter two grades separated by a space. Use a percentage for
+the first and letter for the second: ");
+	scanf("%d", &percent;);
+	scanf("\n");
+	
+	g.setByPercent(percent);
+	g.print();
+	
+	//g.setByLetter(getchar());
+	//g.print();
 
-    printf("Enter percentage grade: ");
-    scanf("%d", &percent);
-    g.setGradeByPercent(&g, percent);
-    g.printGrade(&g);
-
-    printf("Enter letter grade: ");
-    scanf(" %c", &letter);
-    g.setGradeByLetter(&g, letter);
-    g.printGrade(&g);
-
-    return 0;
+	return 0;
 }
-
-
