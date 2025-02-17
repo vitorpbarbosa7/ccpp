@@ -14,7 +14,7 @@ class List {
         int length;
         
         // Constructor
-        List(int len) {
+        List(const int &len) {
             // create array of size (len) of T (type) elements
             // when we see new, we see in fact malloc, that is is dynamic memory allocation
             list = new T[len];
@@ -28,11 +28,11 @@ class List {
         }
         
         // Observer
-        T get(int index) {
+        T get(const int &index) {
             return list[index];
         }
 
-        void set(int index, T val) {
+        void set(const int &index, const T val) {
             list[index] = val;
         }
 };
