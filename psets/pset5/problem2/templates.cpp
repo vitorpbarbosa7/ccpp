@@ -1,8 +1,42 @@
 #include <stdio.h>
 
-/*
-    Your templated List class definition goes here.
-*/
+template <typename T>
+
+class List {
+
+    // pointer to the list
+    // so initial address is the first element
+    // it is the array itself
+    T* list;
+
+    public:
+        // internal variable to refernce by this
+        int length;
+        
+        // Constructor
+        List(int len) {
+            // create array of size (len) of T (type) elements
+            // when we see new, we see in fact malloc, that is is dynamic memory allocation
+            list = new T[len];
+            this->length = len;
+        }
+
+        // Destructor
+        // since we used dynamic memory allocation, therefore we should destroy this
+        ~List() {
+            delete[] list;
+        }
+        
+        // Observer
+        T get(int index) {
+            return list[index];
+        }
+
+        void set(int index, T val) {
+            list[index] = val;
+        }
+};
+
 
 
 
@@ -16,6 +50,7 @@ typedef struct Point_ {
 } Point;
 
 int main(){
+    // the variable we create is called integers
     List<int> integers(10);
     for(int i = 0; i < integers.length; i++){
         integers.set(i, i * 100);
@@ -23,7 +58,8 @@ int main(){
     }
     printf("\n"); // this loop should print: 0 100 200 300 400 500 600 700 800 900 
     
-    List<Point *> points(5);
+    // the variable we create is called points
+    List<Point*> points(5);
     for(int i = 0; i < points.length; i++){
         Point * p = new Point;
         p->x = i * 10;
