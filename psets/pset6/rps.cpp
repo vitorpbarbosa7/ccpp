@@ -41,20 +41,19 @@ class Scissors: public Tool {
         }
 };
 
-// class Paper: public Tool {
+class Paper: public Tool {
 
-//     public:
-//         Paper(int s) { 
-//             this->setStrength(s);
-//             this->setType();
-//         }
+    public:
+        Paper(int s) : Tool(s) {
+            this->setType();
+        }
 
 
-//     protected:
-//         void setType() {
-//             this->type = 's';
-//         }
-// };
+    protected:
+        void setType() {
+            this->type = 'p';
+        }
+};
 
 
 /*
@@ -65,9 +64,13 @@ int main() {
 	// Example main function
 	// You may add your own testing code if you like
     
-    Scissors scissor = Scissors(5);
-    scissor.displayStrength();
-    scissor.displayType();
+    Scissors s = Scissors(4);
+    s.displayStrength();
+    s.displayType();
+
+    Paper p = Paper(2);
+    p.displayStrength();
+    p.displayType();
 
     /*
 	Scissors s1(5);
