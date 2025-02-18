@@ -20,14 +20,17 @@ class Tool {
         int strength;
         char type;
 
+        Tool(int s) {
+            this->setStrength(s);
+        }
+
         virtual void setType() = 0;
 };
 
 class Scissors: public Tool {
 
     public:
-        Scissors(int s) { 
-            this->setStrength(s);
+        Scissors(int s) : Tool(s) {
             this->setType();
         }
 
@@ -38,14 +41,21 @@ class Scissors: public Tool {
         }
 };
 
+// class Paper: public Tool {
 
-/*
-	Implement class Scissors
-*/
+//     public:
+//         Paper(int s) { 
+//             this->setStrength(s);
+//             this->setType();
+//         }
 
-/*
-	Implement class Paper
-*/
+
+//     protected:
+//         void setType() {
+//             this->type = 's';
+//         }
+// };
+
 
 /*
 	Implement class Rock
