@@ -45,9 +45,16 @@ void Circle::draw() {
 }
 
 int main(){
-    Shape* shape = new Circle;
-    shape->draw();
-    delete shape;
+    //Shape* shape = new Circle;
+    
+    //Virtual functions only work correctly with pointers or references, because the vtable is maintained.
+    // Slicing is triggered, so a stack-allocated shape object
+    Shape shape = Circle();
+    //shape->draw();
+    shape.draw();
+    
+
+    //delete shape;
 
     return 0;
 }
