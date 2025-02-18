@@ -49,9 +49,15 @@ int main(){
     
     //Virtual functions only work correctly with pointers or references, because the vtable is maintained.
     // Slicing is triggered, so a stack-allocated shape object
-    Shape shape = Circle();
+    // Shape shape = Circle();
     //shape->draw();
-    shape.draw();
+    // shape.draw();
+    
+    Circle circle;
+    circle.draw();
+
+    //Shape& shapeRef = circle;
+    //shapeRef.draw();
     
 
     //delete shape;
