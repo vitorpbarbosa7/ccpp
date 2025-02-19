@@ -3,135 +3,109 @@
 using namespace std;
 
 class Tool {
-    public:
+public:
+    void setStrength(int s) {
+        this->strength = s;
+    }
 
-        char type;
+    void displayStrength() {
+        cout << "Strength: " << this->strength << endl;
+    }
 
-        void setStrength(int s) {
-            this->strength = s;
-        };
+    void displayType() {
+        cout << "Type: " << this->type << endl;
+    }
 
-        void displayStrength() {
-            cout << "Strength: " << this->strength << endl;
-        }
+    int getStrength() const {
+        return this->strength;
+    }
 
-        void displayType() {
-            cout << "Type: " << this->type << endl;
-        }
+    bool fight(Tool& t) {
+        float tmpStrength = static_cast<float>(this->getStrength());
+        float otherStrength = static_cast<float>(t.getStrength());
 
-        int getStrength() const {
-            return this->strength;
-        }
+        tmpStrength *= this->getMultiplier(t.type);
 
-        virtual bool fight(Tool& t) = 0;
+        return tmpStrength > otherStrength;
+    }
 
-    protected:
-        int strength;
+protected:
+    int strength;
+    char type;
 
-        Tool(int s) {
-            this->setStrength(s);
-        }
+    Tool(int s) {
+        this->setStrength(s);
+    }
 
-        virtual void setType() = 0;
+    virtual void setType() = 0;
+
+    // Define the fight multiplier based on opponent's type
+    virtual float getMultiplier(char opponentType) const = 0;
 };
 
-class Scissors: public Tool {
+class Scissors : public Tool {
+public:
+    Scissors(int s) : Tool(s) {
+        this->setType();
+    }
 
-    public:
-        Scissors(int s) : Tool(s) {
-            this->setType();
-        }
+protected:
+    void setType() override {
+        this->type = 's';
+    }
 
-        bool fight(Tool& t) {
-            float tmpStrength = static_cast<float>(this->getStrength());
-            float otherStrength = static_cast<float>(t.getStrength());
-
-            if (t.type == 'p') {
-                tmpStrength *= 2;
-            }
-            else if (t.type == 'r') {
-                tmpStrength *= 0.5;
-            }
-
-            return tmpStrength > otherStrength;
-        }
-
-    protected:
-        void setType() {
-            this->type = 's';
-        }
+    float getMultiplier(char opponentType) const override {
+        if (opponentType == 'p') return 2.0f;  // Scissors beat Paper (×2)
+        if (opponentType == 'r') return 0.5f;  // Scissors lose to Rock (×0.5)
+        return 1.0f;
+    }
 };
 
-class Paper: public Tool {
+class Paper : public Tool {
+public:
+    Paper(int s) : Tool(s) {
+        this->setType();
+    }
 
-    public:
-        Paper(int s) : Tool(s) {
-            this->setType();
-        }
+protected:
+    void setType() override {
+        this->type = 'p';
+    }
 
-        bool fight(Tool& t) {
-            float tmpStrength = static_cast<float>(this->getStrength());
-            float otherStrength = static_cast<float>(t.getStrength());
-
-            if (t.type == 's') {
-                tmpStrength *= 0.5;
-            }
-            else if (t.type == 'r') {
-                tmpStrength *= 2;
-            }
-
-            return tmpStrength > otherStrength;
-        }
-
-
-    protected:
-        void setType() {
-            this->type = 'p';
-        }
+    float getMultiplier(char opponentType) const override {
+        if (opponentType == 's') return 0.5f;  // Paper loses to Scissors (×0.5)
+        if (opponentType == 'r') return 2.0f;  // Paper beats Rock (×2)
+        return 1.0f;
+    }
 };
 
-class Rock: public Tool {
+class Rock : public Tool {
+public:
+    Rock(int s) : Tool(s) {
+        this->setType();
+    }
 
-    public:
-        Rock(int s) : Tool(s) {
-            this->setType();
-        }
+protected:
+    void setType() override {
+        this->type = 'r';
+    }
 
-        bool fight(Tool& t) {
-            float tmpStrength = static_cast<float>(this->getStrength());
-            float otherStrength = static_cast<float>(t.getStrength());
-
-            if (t.type == 's') {
-                tmpStrength *= 2;
-            }
-            else if (t.type == 'p') {
-                tmpStrength *= 0.5;
-            }
-
-            return tmpStrength > otherStrength;
-        }
-
-
-    protected:
-        void setType() {
-            this->type = 'r';
-        }
+    float getMultiplier(char opponentType) const override {
+        if (opponentType == 's') return 2.0f;  // Rock beats Scissors (×2)
+        if (opponentType == 'p') return 0.5f;  // Rock loses to Paper (×0.5)
+        return 1.0f;
+    }
 };
-
-/*
-	Implement class Rock
-*/
 
 int main() {
-	// Example main function
-	// You may add your own testing code if you like
-    
-	Scissors s1(1);
-	Paper p1(1);
-	Rock r1(1);
-	cout << "S to P: " << s1.fight(p1) << " <-> P to S: " << p1.fight(s1) << endl;
-	cout << "P to R: " << p1.fight(r1) << " <-> R to P: " << r1.fight(p1) << endl;
-	cout << "R to S: " << r1.fight(s1) << " <-> S to R: " << s1.fight(r1) << endl;
+    Scissors s1(1);
+    Paper p1(1);
+    Rock r1(1);
 
-	return 0;
+    cout << "S to P: " << s1.fight(p1) << " <-> P to S: " << p1.fight(s1) << endl;
+    cout << "P to R: " << p1.fight(r1) << " <-> R to P: " << r1.fight(p1) << endl;
+    cout << "R to S: " << r1.fight(s1) << " <-> S to R: " << s1.fight(r1) << endl;
+
+    return 0;
 }
+
