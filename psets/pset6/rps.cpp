@@ -43,12 +43,16 @@ class Scissors: public Tool {
         }
 
         bool fight(Tool& t) {
-            int tmpStrength = this->getStrength();
-            int otherStrength = t.getStrength();
+            float tmpStrength = static_cast<float>(this->getStrength());
+            float otherStrength = static_cast<float>(t.getStrength());
 
             if (t.type == 'p') {
                 tmpStrength *= 2;
             }
+            else if (t.type == 'r') {
+                tmpStrength *= 0.5;
+            }
+
             return tmpStrength > otherStrength;
         }
 
@@ -66,12 +70,16 @@ class Paper: public Tool {
         }
 
         bool fight(Tool& t) {
-            int tmpStrength = this->getStrength();
-            int otherStrength = t.getStrength();
+            float tmpStrength = static_cast<float>(this->getStrength());
+            float otherStrength = static_cast<float>(t.getStrength());
 
             if (t.type == 's') {
                 tmpStrength *= 0.5;
             }
+            else if (t.type == 'r') {
+                tmpStrength *= 2;
+            }
+
             return tmpStrength > otherStrength;
         }
 
@@ -82,6 +90,33 @@ class Paper: public Tool {
         }
 };
 
+class Rock: public Tool {
+
+    public:
+        Rock(int s) : Tool(s) {
+            this->setType();
+        }
+
+        bool fight(Tool& t) {
+            float tmpStrength = static_cast<float>(this->getStrength());
+            float otherStrength = static_cast<float>(t.getStrength());
+
+            if (t.type == 's') {
+                tmpStrength *= 2;
+            }
+            else if (t.type == 'p') {
+                tmpStrength *= 0.5;
+            }
+
+            return tmpStrength > otherStrength;
+        }
+
+
+    protected:
+        void setType() {
+            this->type = 'r';
+        }
+};
 
 /*
 	Implement class Rock
@@ -91,20 +126,12 @@ int main() {
 	// Example main function
 	// You may add your own testing code if you like
     
-    Scissors s = Scissors(4);
-    s.displayStrength();
-    s.displayType();
-
-    Paper p = Paper(2);
-    p.displayStrength();
-    p.displayType();
-
-	Scissors s1(5);
-	Paper p1(7);
-	// Rock r1(15);
-	cout << " S to P: " << s1.fight(p1) << "<-> P to S: " << p1.fight(s1) << endl;
-	// cout << p1.fight(r1) << r1.fight(p1) << endl;
-	// cout << r1.fight(s1) << s1.fight(r1) << endl;
+	Scissors s1(1);
+	Paper p1(1);
+	Rock r1(1);
+	cout << "S to P: " << s1.fight(p1) << " <-> P to S: " << p1.fight(s1) << endl;
+	cout << "P to R: " << p1.fight(r1) << " <-> R to P: " << r1.fight(p1) << endl;
+	cout << "R to S: " << r1.fight(s1) << " <-> S to R: " << s1.fight(r1) << endl;
 
 	return 0;
 }
