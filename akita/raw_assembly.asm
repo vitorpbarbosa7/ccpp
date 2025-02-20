@@ -1,0 +1,36 @@
+hello:
+(__TEXT,__text) section
+_main:
+0000000100003efc	sub	sp, sp, #0x40
+0000000100003f00	stp	x29, x30, [sp, #0x30]
+0000000100003f04	add	x29, sp, #0x30
+0000000100003f08	adrp	x8, 1 ; 0x100004000
+0000000100003f0c	ldr	x8, [x8, #0x8] ; literal pool symbol address: ___stack_chk_guard
+0000000100003f10	ldr	x8, [x8]
+0000000100003f14	stur	x8, [x29, #-0x8]
+0000000100003f18	str	wzr, [sp, #0x14]
+0000000100003f1c	adrp	x9, 0 ; 0x100003000
+0000000100003f20	add	x9, x9, #0xf98 ; literal pool for: "Hello World"
+0000000100003f24	ldr	x10, [x9]
+0000000100003f28	add	x8, sp, #0x18
+0000000100003f2c	str	x10, [sp, #0x18]
+0000000100003f30	ldr	w9, [x9, #0x8]
+0000000100003f34	str	w9, [sp, #0x20]
+0000000100003f38	mov	x9, sp
+0000000100003f3c	str	x8, [x9]
+0000000100003f40	adrp	x0, 0 ; 0x100003000
+0000000100003f44	add	x0, x0, #0xfa4 ; literal pool for: "%s\n"
+0000000100003f48	bl	0x100003f8c ; symbol stub for: _printf
+0000000100003f4c	ldur	x9, [x29, #-0x8]
+0000000100003f50	adrp	x8, 1 ; 0x100004000
+0000000100003f54	ldr	x8, [x8, #0x8] ; literal pool symbol address: ___stack_chk_guard
+0000000100003f58	ldr	x8, [x8]
+0000000100003f5c	subs	x8, x8, x9
+0000000100003f60	cset	w8, eq
+0000000100003f64	tbnz	w8, #0x0, 0x100003f70
+0000000100003f68	b	0x100003f6c
+0000000100003f6c	bl	0x100003f80 ; symbol stub for: ___stack_chk_fail
+0000000100003f70	mov	w0, #0x0
+0000000100003f74	ldp	x29, x30, [sp, #0x30]
+0000000100003f78	add	sp, sp, #0x40
+0000000100003f7c	ret
