@@ -1,6 +1,6 @@
 # C and C++ Learning and Practice
 
-This repository contains my progress and projects as I learn and deepen my understanding of C and C++.
+This repository contains my progress and projects as I learn C and C++.
 
 ## Resources Used
 
