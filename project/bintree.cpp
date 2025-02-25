@@ -36,7 +36,6 @@ public:
     return os << "Node(" << *(static_cast<Element *>(Node.item)) << ")";
   }
 
-private:
   Node *subtree_first() {
     // traversing left, as in the traversal order, left comes first
 
@@ -114,11 +113,17 @@ private:
 
 int main() {
 
-  Element *element_a = new Element('a');
-  Node *node = new Node(element_a);
+  Element *element_a = new Element('A');
+  Element *element_b = new Element('B');
+  Node *tree = new Node(element_a);
+  Node *node_b = new Node(element_b);
 
   std::cout << *element_a << std::endl;
-  std::cout << *node << std::endl;
+  std::cout << *tree << std::endl;
+
+  tree->subtree_insert(node_b);
+
+  std::cout << *(tree->right) << std::endl;
 }
 
 //
