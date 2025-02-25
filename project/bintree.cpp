@@ -108,6 +108,23 @@ public:
     }
   }
 
+  void displayTree() {
+
+    // go left as far as possible
+    if (this->left != nullptr) {
+      this->left->displayTree();
+    }
+
+    // print current element (middle element)
+    std::cout << *this;
+    std::cout << "->";
+
+    // go right as far as possible
+    if (this->right != nullptr) {
+      this->right->displayTree();
+    }
+  }
+
   // end of Node class
 };
 
@@ -115,8 +132,12 @@ int main() {
 
   Element *element_a = new Element('A');
   Element *element_b = new Element('B');
+  Element *element_c = new Element('C');
+  Element *element_d = new Element('D');
   Node *tree = new Node(element_a);
   Node *node_b = new Node(element_b);
+  Node *node_c = new Node(element_c);
+  Node *node_d = new Node(element_d);
 
   std::cout << *element_a << std::endl;
   std::cout << *tree << std::endl;
@@ -124,6 +145,13 @@ int main() {
   tree->subtree_insert(node_b);
 
   std::cout << *(tree->right) << std::endl;
+
+  tree->displayTree();
+  std::cout << std::endl;
+
+  tree->subtree_insert(node_c);
+  tree->subtree_insert(node_d);
+  tree->displayTree();
 }
 
 //
